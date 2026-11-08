@@ -1,0 +1,43 @@
+<div class="flex items-center justify-center min-h-[85vh] p-4">
+    <div style="background-color: #ffffff; border: 1px solid rgba(185, 41, 16, 0.2);" class="w-full max-w-md rounded-xl shadow-xl p-6 sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+
+        <!-- Título / ID del Pedido -->
+        <h5 style="color: #b92910;" class="text-2xl font-bold tracking-tight mb-4 dark:text-red-400">
+            Eliminar Pedido #{{ regPedido.idpedido }}
+        </h5>
+
+        <!-- Información del Pedido a Eliminar -->
+        <div class="mb-6 space-y-2">
+            <p style="color: #374151;" class="text-sm dark:text-gray-300">
+                <span class="font-bold">Cliente:</span> {{ regPedido.nombreCompleto }}
+            </p>
+            <p style="color: #374151;" class="text-sm dark:text-gray-300">
+                <span class="font-bold">Dirección:</span> {{ regPedido.direccion }}
+            </p>
+            <p style="color: #374151;" class="text-sm dark:text-gray-300">
+                <span class="font-bold">Teléfono:</span> {{ regPedido.telefono }}
+            </p>
+            <p style="color: #374151;" class="text-sm dark:text-gray-300">
+                <span class="font-bold">Fecha de Compra:</span> {{ regPedido.fechaCompra }}
+            </p>
+            <p style="color: #374151;" class="text-sm dark:text-gray-300">
+                <span class="font-bold">Total:</span> ${{ regPedido.totalPedido }}
+            </p>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div style="border-top: 1px solid #f3f4f6;" class="flex items-center justify-end gap-3 pt-4 dark:border-gray-700">
+            <a routerLink="/utl/pedidos"
+                style="color: #374151; background-color: #ffffff; border: 1px solid #d1d5db;"
+                class="font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors">
+                Cancelar
+            </a>
+
+            <button type="button" (click)="bajaPedido()"
+                class="font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center justify-center text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 border-none cursor-pointer transition-colors">
+                Eliminar
+            </button>
+        </div>
+
+    </div>
+</div>
