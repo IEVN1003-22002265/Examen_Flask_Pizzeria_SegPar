@@ -1,17 +1,20 @@
-<div class="max-w-5xl mx-auto my-8 p-6 bg-slate-100 rounded-3xl shadow-xl">
+<div class="max-w-6xl mx-auto my-8 p-6 bg-slate-100 rounded-3xl shadow-xl">
     <div class="mb-6 p-5 bg-white rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
         <h1 class="text-2xl font-extrabold text-slate-800 tracking-tight flex items-center gap-2.5">
             <span class="w-2.5 h-6 bg-red-600 rounded-full inline-block shadow-sm"></span>
             Lista de Pedidos
         </h1>
         <div class="flex flex-wrap gap-3">
-            <button (click)="cargarPedidos()" class="px-5 py-2.5 rounded-2xl text-sm font-bold text-white bg-red-600 hover:bg-red-700 shadow-lg shadow-red-600/30 active:scale-95 transition-all cursor-pointer">
+            <button (click)="cargarPedidos()"
+                class="px-5 py-2.5 rounded-2xl text-sm font-bold text-white bg-red-600 hover:bg-red-700 shadow-lg shadow-red-600/30 active:scale-95 transition-all cursor-pointer">
                 Cargar Datos
             </button>
-            <a [routerLink]="['/negocio/registro']" class="px-5 py-2.5 rounded-2xl text-sm font-bold text-white bg-green-600 hover:bg-amber-700 shadow-lg shadow-amber-600/30 active:scale-95 transition-all cursor-pointer inline-flex items-center">
+            <a [routerLink]="['/negocio/registro']"
+                class="px-5 py-2.5 rounded-2xl text-sm font-bold text-white bg-green-600 hover:bg-amber-700 shadow-lg shadow-amber-600/30 active:scale-95 transition-all cursor-pointer inline-flex items-center">
                 + Nuevo Pedido
             </a>
-            <a [routerLink]="['/negocio/reporte']" class="px-5 py-2.5 rounded-2xl text-sm font-bold text-white bg-blue-700 hover:bg-slate-800 shadow-lg shadow-slate-700/30 active:scale-95 transition-all cursor-pointer inline-flex items-center">
+            <a [routerLink]="['/negocio/reporte']"
+                class="px-5 py-2.5 rounded-2xl text-sm font-bold text-white bg-blue-700 hover:bg-slate-800 shadow-lg shadow-slate-700/30 active:scale-95 transition-all cursor-pointer inline-flex items-center">
                 Terminar
             </a>
         </div>
@@ -22,28 +25,43 @@
             <table class="w-full text-sm text-left text-slate-600">
                 <thead class="text-xs font-bold uppercase tracking-wider bg-red-700 text-white">
                     <tr>
-                        <th class="px-6 py-4">Nombre Completo</th>
-                        <th class="px-6 py-4">Dirección</th>
-                        <th class="px-6 py-4">Teléfono</th>
-                        <th class="px-6 py-4">Fecha de Compra</th>
-                        <th class="px-6 py-4 text-center">Total</th>
-                        <th class="px-6 py-4 text-center">Acciones</th>
+                        <th class="px-4 py-4">Nombre Completo</th>
+                        <th class="px-4 py-4">Dirección</th>
+                        <th class="px-4 py-4">Teléfono</th>
+                        <th class="px-4 py-4 text-center">Tamaño</th>
+                        <th class="px-4 py-4 text-center">Cant.</th>
+                        <th class="px-4 py-4">Ingredientes</th>
+                        <th class="px-4 py-4">Fecha de Compra</th>
+                        <th class="px-4 py-4 text-center">Total</th>
+                        <th class="px-4 py-4 text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     <tr *ngFor="let pedido of dataSource" class="bg-white hover:bg-red-50/40 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-slate-900 whitespace-nowrap">
+                        <td class="px-4 py-4 font-semibold text-slate-900 whitespace-nowrap">
                             <span class="px-3 py-1 bg-red-50 text-red-700 rounded-lg text-xs font-bold">
                                 {{pedido.nombreCompleto}}
                             </span>
                         </td>
-                        <td class="px-6 py-4 font-medium text-slate-800">{{pedido.direccion}}</td>
-                        <td class="px-6 py-4 text-slate-600">{{pedido.telefono}}</td>
-                        <td class="px-6 py-4 text-slate-600">{{pedido.fechaCompra}}</td>
-                        <td class="px-6 py-4 text-center font-extrabold text-red-600">${{pedido.totalPedido}}</td>
-                        <td class="px-6 py-4 text-center">
+                        <td class="px-4 py-4 font-medium text-slate-800">{{pedido.direccion}}</td>
+                        <td class="px-4 py-4 text-slate-600">{{pedido.telefono}}</td>
+                        <td class="px-4 py-4 text-center font-bold text-slate-700">
+                            {{pedido.tamano || 'Chica'}}
+                        </td>
+                        <td class="px-4 py-4 text-center font-bold text-amber-700">
+                            {{pedido.numPizzas || 1}}
+                        </td>
+                        <td class="px-4 py-4 text-slate-600 text-xs font-medium">
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-slate-700 border border-slate-200">
+                                {{pedido.ingredientes || 'Ninguno'}}
+                            </span>
+                        </td>
+                        <td class="px-4 py-4 text-slate-600 whitespace-nowrap">{{pedido.fechaCompra}}</td>
+                        <td class="px-4 py-4 text-center font-extrabold text-red-600">${{pedido.totalPedido}}</td>
+                        <td class="px-4 py-4 text-center">
                             <div class="flex justify-center items-center space-x-2">
-                                <a [routerLink]="['/negocio/eliminar', pedido.idpedido]" class="px-4 py-2 text-white bg-red-500 hover:bg-red-700 rounded-xl text-xs font-semibold shadow-md shadow-red-600/20 transition-all cursor-pointer">
+                                <a [routerLink]="['/negocio/eliminar', pedido.idpedido]"
+                                    class="px-4 py-2 text-white bg-red-500 hover:bg-red-700 rounded-xl text-xs font-semibold shadow-md shadow-red-600/20 transition-all cursor-pointer">
                                     Eliminar
                                 </a>
                             </div>

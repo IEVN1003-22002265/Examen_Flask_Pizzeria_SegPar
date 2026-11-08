@@ -59,9 +59,8 @@ export class AgregarPedido implements OnInit {
   }
 
   onSubmit(): void {
-    // Si el formulario no está completamente lleno y válido, detenemos el proceso
     if (this.formGroup.invalid) {
-      this.formGroup.markAllAsTouched(); // Marca los campos para que se muestren posibles alertas visuales
+      this.formGroup.markAllAsTouched();
       alert('⚠️ Por favor completa todos los campos obligatorios antes de guardar el pedido.');
       return;
     }
@@ -75,18 +74,19 @@ export class AgregarPedido implements OnInit {
 
     const ingredientesTexto = seleccionados.length > 0 ? seleccionados.join(', ') : 'Ninguno';
 
+  
     const datosFinales = {
       nombreCompleto: formVal.nombreCompleto,
       direccion: formVal.direccion,
       telefono: formVal.telefono,
       fechaCompra: formVal.fechaCompra,
       totalPedido: formVal.totalPedido,
-      ingredientesSeleccionados: ingredientesTexto,
-      tamanoSeleccionado: formVal.tamano,
-      numPizzas: formVal.numPizzas
+      tamano: formVal.tamano,         
+      ingredientes: ingredientesTexto,
+      numPizzas: formVal.numPizzas    
     };
 
-    console.log('Enviando pedido validado a Flask:', datosFinales);
+    console.log('Enviando pedido correcto a Flask:', datosFinales);
 
     this.pedidosService.agregarNuevoPedido(datosFinales).subscribe({
       next: (respuesta) => {
